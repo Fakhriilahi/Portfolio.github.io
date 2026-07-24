@@ -217,7 +217,7 @@ button{ font-family:inherit; }
 
 @media (max-width:900px){ .about-grid{ grid-template-columns:1fr; } }
 
-/* ========================================================= EXPERIENCE (timeline) */
+/* ========================================================= EXPERIENCE */
 .timeline{ position:relative; padding-left:38px; }
 .timeline::before{
   content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--line);
@@ -601,7 +601,7 @@ var hasGSAP = typeof gsap !== 'undefined';
 var hasThree = typeof THREE !== 'undefined';
 if(hasGSAP && typeof ScrollTrigger !== 'undefined'){ gsap.registerPlugin(ScrollTrigger); }
 
-/* ============================================================ HERO NAME SPLIT */
+/* HERO NAME SPLIT */
 function splitHeroName(){
   var lines = document.querySelectorAll('#heroName .line');
   lines.forEach(function(line){
@@ -628,7 +628,7 @@ function playHeroIntro(){
   }
 }
 
-/* ============================================================ SCROLL REVEALS */
+/* SCROLL REVEALS */
 function initScrollReveals(){
   var els = document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window && !reduceMotion){
@@ -643,7 +643,7 @@ function initScrollReveals(){
   }
 }
 
-/* ============================================================ TIMELINE DRAW */
+/* TIMELINE DRAW */
 function initTimelineTrack(){
   var track = document.getElementById('timelineTrack');
   var wrap = document.getElementById('timeline');
@@ -655,7 +655,7 @@ function initTimelineTrack(){
   });
 }
 
-/* ============================================================ PROJECT TILT */
+/* PROJECT TILT */
 function initTiltCards(){
   if(isTouch) return;
   document.querySelectorAll('.tilt').forEach(function(card){
@@ -678,7 +678,7 @@ function initTiltCards(){
   });
 }
 
-/* ============================================================ PRELOADER KICKOFF */
+/* PRELOADER */
 function startSite(){
   playHeroIntro();
   initScrollReveals();
@@ -719,7 +719,7 @@ function startSite(){
   }
 })();
 
-/* ============================================================ CUSTOM CURSOR */
+/* CUSTOM CURSOR */
 if(!isTouch){
   var dot = document.getElementById('cursorDot');
   var ring = document.getElementById('cursorRing');
@@ -741,7 +741,7 @@ if(!isTouch){
   });
 }
 
-/* ============================================================ MOBILE NAV */
+/* MOBILE NAV */
 var menuBtn = document.getElementById('menuBtn');
 var closeBtn = document.getElementById('closeBtn');
 var overlay = document.getElementById('navOverlay');
@@ -752,7 +752,7 @@ closeBtn.addEventListener('click', closeNav);
 overlay.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeNav); });
 document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeNav(); });
 
-/* ============================================================ THREE.JS — HERO AVATAR */
+/* THREE.JS — HERO SCENE & BOUNCING BALLS */
 if(hasThree){
   (function(){
     var canvas = document.getElementById('hero-canvas');
@@ -764,175 +764,33 @@ if(hasThree){
     var camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
     camera.position.set(0, 0, 7);
 
-    scene.add(new THREE.AmbientLight(0xffffff, 0.55));
-    var keyLight = new THREE.DirectionalLight(0xffffff, 1.1);
-    keyLight.position.set(3, 4, 5);
-    scene.add(keyLight);
-    var rim = new THREE.PointLight(0xd6ff3f, 6, 20);
-    rim.position.set(-4, 2, -3);
-    scene.add(rim);
-    var fillLight = new THREE.PointLight(0x6f7bff, 2.2, 20);
-    fillLight.position.set(3, -2, 2);
-    scene.add(fillLight);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.8));
 
-    var avatar = new THREE.Group();
-    var figure = new THREE.Group(); /* everything: body, head, desk */
-
-    var bodyMat = new THREE.MeshStandardMaterial({ color: 0x1c1c20, flatShading: true, roughness: 0.6, metalness: 0.15 });
-    var skinMat = new THREE.MeshStandardMaterial({ color: 0x8d8d87, flatShading: true, roughness: 0.55, metalness: 0.12 });
-    var deskMat = new THREE.MeshStandardMaterial({ color: 0x141416, flatShading: true, roughness: 0.5, metalness: 0.2 });
-    var screenMat = new THREE.MeshStandardMaterial({ color: 0x0c0c0d, roughness: 0.4, metalness: 0.3, emissive: 0xd6ff3f, emissiveIntensity: 0.55 });
-
-    /* torso */
-    var torso = new THREE.Mesh(new THREE.BoxGeometry(1.3, 1.5, 0.85), bodyMat);
-    torso.position.set(0, 0, 0);
-    figure.add(torso);
-
-    /* chair back */
-    var chairBack = new THREE.Mesh(new THREE.BoxGeometry(1.15, 1.7, 0.14), deskMat);
-    chairBack.position.set(0, 0.15, -0.56);
-    figure.add(chairBack);
-
-    /* -------------------------------------------------- head + glasses (reused low-poly style) */
-    var headGroup = new THREE.Group();
-    var headGeo = new THREE.IcosahedronGeometry(1.15, 1);
-    var head = new THREE.Mesh(headGeo, skinMat);
-    headGroup.add(head);
-
-    var glasses = new THREE.Group();
-    var frameMat = new THREE.MeshStandardMaterial({ color: 0x0c0c0d, roughness: 0.35, metalness: 0.4 });
-    var lensMat = new THREE.MeshPhysicalMaterial({
-      color: 0xd6ff3f, transparent: true, opacity: 0.28, roughness: 0.05,
-      metalness: 0, transmission: 0.4, thickness: 0.2
-    });
-    function makeLens(x){
-      var g = new THREE.Group();
-      var ring = new THREE.Mesh(new THREE.TorusGeometry(0.36, 0.045, 8, 20), frameMat);
-      var lens = new THREE.Mesh(new THREE.CircleGeometry(0.34, 20), lensMat);
-      lens.position.z = 0.02;
-      g.add(ring); g.add(lens);
-      g.position.x = x;
-      return g;
-    }
-    var lensL = makeLens(-0.46);
-    var lensR = makeLens(0.46);
-    glasses.add(lensL, lensR);
-    var bridge = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.24, 8), frameMat);
-    bridge.rotation.z = Math.PI / 2;
-    glasses.add(bridge);
-    var glassArmL = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, 0.9, 8), frameMat);
-    glassArmL.rotation.z = Math.PI / 2; glassArmL.rotation.y = 0.5;
-    glassArmL.position.set(-0.95, 0, -0.35);
-    var glassArmR = glassArmL.clone();
-    glassArmR.position.x = 0.95; glassArmR.rotation.y = -0.5;
-    glasses.add(glassArmL, glassArmR);
-    glasses.position.set(0, -0.02, 1.02);
-    headGroup.add(glasses);
-
-    headGroup.scale.setScalar(0.62);
-    headGroup.position.set(0, 1.15, 0.05);
-    figure.add(headGroup);
-
-    /* -------------------------------------------------- arms (shoulder -> elbow -> hand, typing motion) */
-    var armMat = bodyMat;
-    var elbowGroups = [];
-    [-1, 1].forEach(function(side){
-      var shoulder = new THREE.Group();
-      shoulder.position.set(side * 0.72, 0.55, 0.2);
-      shoulder.rotation.z = side * -0.35;
-      shoulder.rotation.x = 0.55;
-
-      var upperArm = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.15, 0.72, 8), armMat);
-      upperArm.position.y = -0.36;
-      shoulder.add(upperArm);
-
-      var elbow = new THREE.Group();
-      elbow.position.set(0, -0.72, 0);
-      elbow.rotation.x = -1.15;
-
-      var forearm = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.13, 0.62, 8), skinMat);
-      forearm.position.y = -0.31;
-      elbow.add(forearm);
-
-      var hand = new THREE.Mesh(new THREE.SphereGeometry(0.15, 10, 10), skinMat);
-      hand.position.y = -0.64;
-      elbow.add(hand);
-
-      shoulder.add(elbow);
-      figure.add(shoulder);
-      elbowGroups.push({ group: elbow, baseX: elbow.rotation.x, phase: side * Math.PI });
-    });
-
-    /* -------------------------------------------------- desk + laptop */
-    var desk = new THREE.Mesh(new THREE.BoxGeometry(2.5, 0.1, 1.15), deskMat);
-    desk.position.set(0, -0.62, 1.05);
-    figure.add(desk);
-
-    var deskLegMat = deskMat;
-    [[-1.1, 0.55], [1.1, 0.55], [-1.1, 1.55], [1.1, 1.55]].forEach(function(pos){
-      var leg = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.045, 1.1, 6), deskLegMat);
-      leg.position.set(pos[0], -1.17, pos[1]);
-      figure.add(leg);
-    });
-
-    var laptopBase = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.06, 0.62), deskMat);
-    laptopBase.position.set(0, -0.55, 0.95);
-    figure.add(laptopBase);
-
-    var laptopScreen = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.6, 0.04), screenMat);
-    laptopScreen.position.set(0, -0.24, 0.66);
-    laptopScreen.rotation.x = -0.28;
-    figure.add(laptopScreen);
-
-    figure.position.set(0, -0.35, 0.3);
-    avatar.add(figure);
-    scene.add(avatar);
-    avatar.position.set(1.75, -0.55, -0.3);
-    avatar.scale.setScalar(0.82);
-
-    /* subtle orbiting particles */
-    var particleCount = isTouch ? 60 : 140;
-    var particleGeo = new THREE.BufferGeometry();
-    var positions = new Float32Array(particleCount * 3);
-    for(var i = 0; i < particleCount; i++){
-      var r = 2.6 + Math.random() * 1.8;
-      var theta = Math.random() * Math.PI * 2;
-      var phi = Math.acos((Math.random() * 2) - 1);
-      positions[i*3]   = r * Math.sin(phi) * Math.cos(theta);
-      positions[i*3+1] = r * Math.sin(phi) * Math.sin(theta) * 0.6;
-      positions[i*3+2] = r * Math.cos(phi);
-    }
-    particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    var particleMat = new THREE.PointsMaterial({ color: 0xd6ff3f, size: 0.02, transparent: true, opacity: 0.55 });
-    var particles = new THREE.Points(particleGeo, particleMat);
-    scene.add(particles);
-
-    /* -------------------------------------------------- playful bouncing balls */
-    var BOUNDS = { x: 3.6, y: 2.2, z: 1.8 };
-    var BALL_Z_OFFSET = 1.6; /* pushes balls toward the camera, in front of the avatar */
-    var ballColors = [0xd6ff3f, 0x6f7bff, 0xf3f3f0, 0xff6f91];
+    /* BOUNCING BALLS (FIXED VISIBILITY & POSITION) */
+    var BOUNDS = { x: 3.2, y: 1.8, z: 1.2 };
+    var BALL_Z_OFFSET = 2.5;
+    var ballColors = [0xd6ff3f, 0x6f7bff, 0xffffff, 0xff6f91];
     var balls = [];
     var ballGroup = new THREE.Group();
-    var NUM_BALLS = isTouch ? 6 : 11;
+    var NUM_BALLS = isTouch ? 6 : 12;
+
     for (var bi = 0; bi < NUM_BALLS; bi++) {
-      var br = 0.24 + Math.random() * 0.14;
-      var bgeo = new THREE.SphereGeometry(br, 22, 22);
-      var bmat = new THREE.MeshStandardMaterial({
-        color: ballColors[bi % ballColors.length],
-        roughness: 0.2, metalness: 0.25,
-        emissive: ballColors[bi % ballColors.length], emissiveIntensity: 0.22
+      var br = 0.22 + Math.random() * 0.12;
+      var bgeo = new THREE.SphereGeometry(br, 32, 32);
+      var bmat = new THREE.MeshBasicMaterial({
+        color: ballColors[bi % ballColors.length]
       });
       var bmesh = new THREE.Mesh(bgeo, bmat);
       bmesh.position.set(
         (Math.random() * 2 - 1) * BOUNDS.x,
         (Math.random() * 2 - 1) * BOUNDS.y,
-        BALL_Z_OFFSET + (Math.random() * 2 - 1) * BOUNDS.z
+        BALL_Z_OFFSET + (Math.random() * 2 - 1) * 0.5
       );
       ballGroup.add(bmesh);
       balls.push({
         mesh: bmesh,
         radius: br,
-        vel: new THREE.Vector3((Math.random() - 0.5) * 0.9, (Math.random() - 0.5) * 0.9, (Math.random() - 0.5) * 0.5)
+        vel: new THREE.Vector3((Math.random() - 0.5) * 1.2, (Math.random() - 0.5) * 1.2, (Math.random() - 0.5) * 0.5)
       });
     }
     scene.add(ballGroup);
@@ -963,21 +821,21 @@ if(hasThree){
         var b = balls[i];
         if (haveMouse3D) {
           var d = b.mesh.position.distanceTo(mouse3D);
-          var influence = 1.3;
+          var influence = 1.5;
           if (d < influence) {
             var strength = (influence - d) / influence;
             var push = new THREE.Vector3().subVectors(b.mesh.position, mouse3D).normalize();
-            b.vel.addScaledVector(push, strength * 6 * dt);
-            b.vel.addScaledVector(mouseVel3D, 6 * strength);
+            b.vel.addScaledVector(push, strength * 8 * dt);
+            b.vel.addScaledVector(mouseVel3D, 8 * strength);
           }
         }
         b.vel.multiplyScalar(0.99);
         b.mesh.position.addScaledVector(b.vel, dt * 60 * 0.0166);
 
-        if (b.mesh.position.x > BOUNDS.x || b.mesh.position.x < -BOUNDS.x) { b.mesh.position.x = THREE.MathUtils.clamp(b.mesh.position.x, -BOUNDS.x, BOUNDS.x); b.vel.x *= -0.75; }
-        if (b.mesh.position.y > BOUNDS.y || b.mesh.position.y < -BOUNDS.y) { b.mesh.position.y = THREE.MathUtils.clamp(b.mesh.position.y, -BOUNDS.y, BOUNDS.y); b.vel.y *= -0.75; }
+        if (b.mesh.position.x > BOUNDS.x || b.mesh.position.x < -BOUNDS.x) { b.mesh.position.x = THREE.MathUtils.clamp(b.mesh.position.x, -BOUNDS.x, BOUNDS.x); b.vel.x *= -0.85; }
+        if (b.mesh.position.y > BOUNDS.y || b.mesh.position.y < -BOUNDS.y) { b.mesh.position.y = THREE.MathUtils.clamp(b.mesh.position.y, -BOUNDS.y, BOUNDS.y); b.vel.y *= -0.85; }
         var zMin = BALL_Z_OFFSET - BOUNDS.z, zMax = BALL_Z_OFFSET + BOUNDS.z;
-        if (b.mesh.position.z > zMax || b.mesh.position.z < zMin) { b.mesh.position.z = THREE.MathUtils.clamp(b.mesh.position.z, zMin, zMax); b.vel.z *= -0.75; }
+        if (b.mesh.position.z > zMax || b.mesh.position.z < zMin) { b.mesh.position.z = THREE.MathUtils.clamp(b.mesh.position.z, zMin, zMax); b.vel.z *= -0.85; }
       }
 
       for (var a = 0; a < balls.length; a++) {
@@ -1003,12 +861,6 @@ if(hasThree){
       }
     }
 
-    var mouseX = 0, mouseY = 0, targetRotX = 0, targetRotY = 0;
-    window.addEventListener('mousemove', function(e){
-      mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-      mouseY = (e.clientY / window.innerHeight) * 2 - 1;
-    }, { passive: true });
-
     function resize(){
       var w = heroEl.clientWidth, h = heroEl.clientHeight;
       renderer.setSize(w, h, false);
@@ -1019,45 +871,21 @@ if(hasThree){
     window.addEventListener('resize', resize);
 
     var clock = new THREE.Clock();
-    var visible = true;
-    if('IntersectionObserver' in window){
-      var obs = new IntersectionObserver(function(entries){ visible = entries[0].isIntersecting; }, { threshold: 0.01 });
-      obs.observe(heroEl);
-    }
-
     var lastFrameT = performance.now();
     function animate(){
       requestAnimationFrame(animate);
-      if(!visible) return;
-      var t = clock.getElapsedTime();
       var now = performance.now();
       var dt = Math.min((now - lastFrameT) / 1000, 0.05);
       lastFrameT = now;
 
-      targetRotY += (mouseX * 0.5 - targetRotY) * 0.04;
-      targetRotX += (mouseY * 0.3 - targetRotX) * 0.04;
-
-      avatar.rotation.y = targetRotY * 0.28;
-      avatar.rotation.x = targetRotX * 0.12;
-      avatar.position.y = -0.55 + (reduceMotion ? 0 : Math.sin(t * 0.9) * 0.05);
-
-      if(!reduceMotion){
-        elbowGroups.forEach(function(e){
-          e.group.rotation.x = e.baseX + Math.sin(t * 9 + e.phase) * 0.22;
-        });
-      }
-
-      particles.rotation.y = t * 0.03;
-
       if(!reduceMotion) updateBalls(dt);
-
       renderer.render(scene, camera);
     }
     animate();
   })();
 }
 
-/* ============================================================ THREE.JS — SKILLS DECORATIVE SHAPE */
+/* THREE.JS — SKILLS DECORATIVE SHAPE */
 if(hasThree){
   (function(){
     var wrap = document.getElementById('skills-canvas-wrap');
@@ -1071,97 +899,10 @@ if(hasThree){
     var camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
     camera.position.set(0, 0, 5);
 
-    var light1 = new THREE.DirectionalLight(0xffffff, 1);
-    light1.position.set(2, 3, 4);
-    scene.add(light1);
-    scene.add(new THREE.AmbientLight(0xffffff, 0.4));
-
-    var geo = new THREE.IcosahedronGeometry(1.3, 0);
-    var wireMat = new THREE.MeshBasicMaterial({ color: 0xd6ff3f, wireframe: true, transparent: true, opacity: 0.5 });
-    var solidMat = new THREE.MeshStandardMaterial({ color: 0x16161a, flatShading: true, roughness: 0.5 });
-    var solid = new THREE.Mesh(geo, solidMat);
-    var wire = new THREE.Mesh(geo.clone(), wireMat);
-    wire.scale.setScalar(1.02);
-    scene.add(solid, wire);
-
-    /* small playful balls orbiting/bouncing around the shape, reacting to mouse */
-    var skillBalls = [];
-    var skillBallColors = [0xd6ff3f, 0x6f7bff, 0xf3f3f0, 0xff6f91];
-    var SB_BOUNDS = 2.3;
-    var SB_COUNT = 6;
-    for (var si = 0; si < SB_COUNT; si++) {
-      var sr = 0.13 + Math.random() * 0.07;
-      var sgeo = new THREE.SphereGeometry(sr, 16, 16);
-      var smat = new THREE.MeshStandardMaterial({
-        color: skillBallColors[si % skillBallColors.length],
-        roughness: 0.2, metalness: 0.2,
-        emissive: skillBallColors[si % skillBallColors.length], emissiveIntensity: 0.25
-      });
-      var smesh = new THREE.Mesh(sgeo, smat);
-      var sang = (si / SB_COUNT) * Math.PI * 2;
-      smesh.position.set(Math.cos(sang) * 1.9, Math.sin(sang) * 1.2, (Math.random() - 0.5) * 1.2);
-      scene.add(smesh);
-      skillBalls.push({
-        mesh: smesh, radius: sr,
-        vel: new THREE.Vector3((Math.random() - 0.5) * 0.6, (Math.random() - 0.5) * 0.6, (Math.random() - 0.5) * 0.4)
-      });
-    }
-    var skillRaycaster = new THREE.Raycaster();
-    var skillMouseVec2 = new THREE.Vector2(-10, -10);
-    var skillPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
-    var skillMouse3D = new THREE.Vector3();
-    var haveSkillMouse = false;
-    window.addEventListener('mousemove', function (e) {
-      var rect = wrap.getBoundingClientRect();
-      skillMouseVec2.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-      skillMouseVec2.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-    }, { passive: true });
-
-    function updateSkillBalls(dt) {
-      skillRaycaster.setFromCamera(skillMouseVec2, camera);
-      haveSkillMouse = !!skillRaycaster.ray.intersectPlane(skillPlane, skillMouse3D);
-      for (var i = 0; i < skillBalls.length; i++) {
-        var b = skillBalls[i];
-        if (haveSkillMouse) {
-          var d = b.mesh.position.distanceTo(skillMouse3D);
-          var influence = 1.1;
-          if (d < influence) {
-            var strength = (influence - d) / influence;
-            var push = new THREE.Vector3().subVectors(b.mesh.position, skillMouse3D).normalize();
-            b.vel.addScaledVector(push, strength * 5 * dt);
-          }
-        }
-        b.vel.multiplyScalar(0.985);
-        b.mesh.position.addScaledVector(b.vel, dt * 60 * 0.0166);
-        ['x', 'y', 'z'].forEach(function (axis) {
-          if (b.mesh.position[axis] > SB_BOUNDS || b.mesh.position[axis] < -SB_BOUNDS) {
-            b.mesh.position[axis] = THREE.MathUtils.clamp(b.mesh.position[axis], -SB_BOUNDS, SB_BOUNDS);
-            b.vel[axis] *= -0.75;
-          }
-        });
-      }
-      for (var a = 0; a < skillBalls.length; a++) {
-        for (var c = a + 1; c < skillBalls.length; c++) {
-          var ba = skillBalls[a], bc = skillBalls[c];
-          var diff = new THREE.Vector3().subVectors(ba.mesh.position, bc.mesh.position);
-          var dist = diff.length();
-          var minDist = ba.radius + bc.radius;
-          if (dist < minDist && dist > 0.0001) {
-            var normal = diff.multiplyScalar(1 / dist);
-            var overlap = (minDist - dist) / 2;
-            ba.mesh.position.addScaledVector(normal, overlap);
-            bc.mesh.position.addScaledVector(normal, -overlap);
-            var relVel = new THREE.Vector3().subVectors(ba.vel, bc.vel);
-            var speed = relVel.dot(normal);
-            if (speed < 0) {
-              var impulse = normal.clone().multiplyScalar(speed);
-              ba.vel.sub(impulse);
-              bc.vel.add(impulse);
-            }
-          }
-        }
-      }
-    }
+    var geo = new THREE.IcosahedronGeometry(1.2, 0);
+    var wireMat = new THREE.MeshBasicMaterial({ color: 0xd6ff3f, wireframe: true, transparent: true, opacity: 0.6 });
+    var solid = new THREE.Mesh(geo, wireMat);
+    scene.add(solid);
 
     function resize(){
       var w = wrap.clientWidth, h = wrap.clientHeight;
@@ -1172,25 +913,12 @@ if(hasThree){
     resize();
     window.addEventListener('resize', resize);
 
-    var visible = false;
-    if('IntersectionObserver' in window){
-      var obs = new IntersectionObserver(function(entries){ visible = entries[0].isIntersecting; }, { threshold: 0.05 });
-      obs.observe(wrap);
-    } else { visible = true; }
-
     var clock = new THREE.Clock();
-    var lastSkillT = performance.now();
     function animate(){
       requestAnimationFrame(animate);
-      if(!visible) return;
       var t = clock.getElapsedTime();
-      var now = performance.now();
-      var dt = Math.min((now - lastSkillT) / 1000, 0.05);
-      lastSkillT = now;
-      solid.rotation.y = t * (reduceMotion ? 0.05 : 0.25);
-      solid.rotation.x = t * 0.12;
-      wire.rotation.copy(solid.rotation);
-      if(!reduceMotion) updateSkillBalls(dt);
+      solid.rotation.y = t * 0.3;
+      solid.rotation.x = t * 0.15;
       renderer.render(scene, camera);
     }
     animate();
