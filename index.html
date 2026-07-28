@@ -109,6 +109,13 @@ button{ font-family:inherit; }
 }
 .nav-desktop a:hover::after{ right:0; }
 
+.lang-switch{
+  background:none; border:1px solid rgba(255,255,255,.3); border-radius:999px;
+  padding:6px 14px; font-family:var(--f-mono); font-size:.72rem; letter-spacing:.1em;
+  cursor:pointer; color:var(--ink); transition:all .3s ease; mix-blend-mode:normal;
+}
+.lang-switch:hover{ border-color:var(--accent); color:var(--accent); }
+
 .menu-btn{
   display:none; background:none; border:1px solid rgba(255,255,255,.3); border-radius:999px;
   padding:9px 18px; font-family:var(--f-mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase;
@@ -137,7 +144,7 @@ button{ font-family:inherit; }
   font-family:var(--f-mono); font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; cursor:pointer;
 }
 .nav-overlay .overlay-meta{
-  margin-top:44px; font-family:var(--f-mono); font-size:.74rem; color:var(--muted); display:flex; gap:22px; flex-wrap:wrap;
+  margin-top:44px; font-family:var(--f-mono); font-size:.74rem; color:var(--muted); display:flex; gap:22px; flex-wrap:wrap; align-items:center;
 }
 
 /* ========================================================= HERO */
@@ -317,7 +324,7 @@ button{ font-family:inherit; }
 </head>
 <body>
 
-<a href="#main" class="skip-link">Skip to content</a>
+<a href="#main" class="skip-link" data-i18n="skipLink">Skip to content</a>
 
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -325,34 +332,36 @@ button{ font-family:inherit; }
 <div class="preloader" id="preloader">
   <div class="pl-count" id="plCount">0</div>
   <div class="pl-bar" id="plBar"></div>
-  <div class="pl-label">Loading experience</div>
+  <div class="pl-label" data-i18n="loading">Loading experience</div>
 </div>
 
 <header class="site-header">
   <a href="#hero" class="logo"><span class="dot"></span>F.ELAHI</a>
   <nav class="nav-desktop" aria-label="Primary">
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
+    <a href="#about" data-i18n="navAbout">About</a>
+    <a href="#experience" data-i18n="navExperience">Experience</a>
+    <a href="#projects" data-i18n="navProjects">Projects</a>
+    <a href="#skills" data-i18n="navSkills">Skills</a>
+    <a href="#contact" data-i18n="navContact">Contact</a>
+    <button class="lang-switch langBtn" aria-label="Switch Language">FR / ENG</button>
   </nav>
-  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navOverlay">Menu</button>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navOverlay" data-i18n="menu">Menu</button>
 </header>
 
 <div class="nav-overlay" id="navOverlay">
-  <button class="close-btn" id="closeBtn">Close</button>
+  <button class="close-btn" id="closeBtn" data-i18n="close">Close</button>
   <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about" data-i18n="navAbout">About</a></li>
+    <li><a href="#experience" data-i18n="navExperience">Experience</a></li>
+    <li><a href="#projects" data-i18n="navProjects">Projects</a></li>
+    <li><a href="#skills" data-i18n="navSkills">Skills</a></li>
+    <li><a href="#contact" data-i18n="navContact">Contact</a></li>
   </ul>
   <div class="overlay-meta">
     <span>Bucharest, RO</span>
     <span>Creil, FR</span>
     <span>fakhriilahi03@gmail.com</span>
+    <button class="lang-switch langBtn" aria-label="Switch Language">FR / ENG</button>
   </div>
 </div>
 
@@ -364,49 +373,49 @@ button{ font-family:inherit; }
     <div class="hero-scrim"></div>
     <div class="wrap hero-content">
       <div class="hero-top-row">
-        <span class="eyebrow">Business &amp; IT Analytics</span>
-        <span class="hero-loc">Bucharest, Romania<br>&amp; Creil, France</span>
+        <span class="eyebrow" data-i18n="heroEyebrow">Business &amp; IT Analytics</span>
+        <span class="hero-loc" data-i18n="heroLoc">Bucharest, Romania<br>&amp; Creil, France</span>
       </div>
       <h1 class="hero-name" id="heroName" aria-label="Fakhreddine Elahi">
         <span class="line">Fakhreddine</span>
         <span class="line"><em>Elahi</em></span>
       </h1>
-      <p class="hero-pitch">Junior Business/IT Analyst turning <b>high-volume, policy-driven</b> operations into clear, structured decisions — with SQL, Python, Power BI and Tableau behind every call.</p>
+      <p class="hero-pitch" data-i18n="heroPitch">Junior Business/IT Analyst turning <b>high-volume, policy-driven</b> operations into clear, structured decisions — with SQL, Python, Power BI and Tableau behind every call.</p>
       <div class="hero-cta-row">
-        <a href="#contact" class="btn btn-solid">Get in touch</a>
-        <a href="#projects" class="btn btn-ghost">View projects</a>
+        <a href="#contact" class="btn btn-solid" data-i18n="btnContact">Get in touch</a>
+        <a href="#projects" class="btn btn-ghost" data-i18n="btnProjects">View projects</a>
       </div>
     </div>
-    <div class="scroll-cue"><span class="stick"></span>Scroll</div>
+    <div class="scroll-cue"><span class="stick"></span><span data-i18n="scroll">Scroll</span></div>
   </section>
 
   <!-- ABOUT -->
   <section class="section" id="about">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">01 — About</span>
-        <h2 class="section-title">Profile</h2>
+        <span class="eyebrow" data-i18n="aboutEyebrow">01 — About</span>
+        <h2 class="section-title" data-i18n="aboutTitle">Profile</h2>
       </div>
       <div class="about-grid">
         <div class="reveal">
-          <p class="about-statement">A <span class="accent">Master's in Business Analytics</span> paired with hands-on experience in strict-SLA, policy-driven environments — comfortable translating complex rules into clear, structured decisions.</p>
-          <p class="about-body">Junior Business/IT Analyst profile combining a Master's in Business Analytics (Python, SQL, Power BI, predictive modeling, Tableau) with hands-on experience in high-volume, policy-driven operational environments. Comfortable translating complex rules into clear, structured decisions, working under strict SLAs and KPIs, and aligning across teams on process and quality. Seeking to apply analytical rigor and stakeholder communication skills to functional analysis work in a regulated, process-intensive setting such as credit granting.</p>
+          <p class="about-statement" data-i18n="aboutStatement">A <span class="accent">Master's in Business Analytics</span> paired with hands-on experience in strict-SLA, policy-driven environments — comfortable translating complex rules into clear, structured decisions.</p>
+          <p class="about-body" data-i18n="aboutBody">Junior Business/IT Analyst profile combining a Master's in Business Analytics (Python, SQL, Power BI, predictive modeling, Tableau) with hands-on experience in high-volume, policy-driven operational environments. Comfortable translating complex rules into clear, structured decisions, working under strict SLAs and KPIs, and aligning across teams on process and quality. Seeking to apply analytical rigor and stakeholder communication skills to functional analysis work in a regulated, process-intensive setting such as credit granting.</p>
         </div>
         <div class="about-side reveal">
           <div class="edu-item">
             <span class="yr">2026</span>
-            <h3>Master's, Business Analytics</h3>
-            <p>Bucharest University of Economic Studies (FABIZ)</p>
+            <h3 data-i18n="edu1Title">Master's, Business Analytics</h3>
+            <p data-i18n="edu1Desc">Bucharest University of Economic Studies (FABIZ)</p>
           </div>
           <div class="edu-item">
             <span class="yr">2024</span>
-            <h3>National License, Economic Sciences</h3>
-            <p>ISG Bizerte — Economic: Engineering &amp; Finance</p>
+            <h3 data-i18n="edu2Title">National License, Economic Sciences</h3>
+            <p data-i18n="edu2Desc">ISG Bizerte — Economic: Engineering &amp; Finance</p>
           </div>
           <div class="edu-item">
-            <span class="yr">Languages</span>
-            <h3>Arabic · French · English</h3>
-            <p>Native · Fluent · Fluent</p>
+            <span class="yr" data-i18n="langTitle">Languages</span>
+            <h3 data-i18n="langList">Arabic · French · English</h3>
+            <p data-i18n="langProf">Native · Fluent · Fluent</p>
           </div>
         </div>
       </div>
@@ -417,8 +426,8 @@ button{ font-family:inherit; }
   <section class="section" id="experience">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">02 — Experience</span>
-        <h2 class="section-title">Selected <span class="accent">Experience</span></h2>
+        <span class="eyebrow" data-i18n="expEyebrow">02 — Experience</span>
+        <h2 class="section-title" data-i18n="expTitle">Selected <span class="accent">Experience</span></h2>
       </div>
 
       <div class="timeline" id="timeline">
@@ -426,41 +435,41 @@ button{ font-family:inherit; }
 
         <div class="job reveal">
           <div class="job-head">
-            <div><h3>Content Moderator</h3><span class="job-org">Genpact Romania, Bucharest — French</span></div>
-            <span class="job-dates">Present</span>
+            <div><h3 data-i18n="job1Title">Content Moderator</h3><span class="job-org" data-i18n="job1Org">Genpact Romania, Bucharest — French</span></div>
+            <span class="job-dates" data-i18n="present">Present</span>
           </div>
           <div class="job-body">
             <ul>
-              <li><b>Process &amp; Policy Analysis</b> — reviewed high volumes of user content against complex, evolving policy rules, identifying patterns and edge cases to inform policy updates.</li>
-              <li><b>Quality &amp; SLA Adherence</b> — maintained a consistently high accuracy rate while strictly adhering to SLAs and KPIs.</li>
-              <li><b>Process Optimization</b> — evaluated moderation workflows and delivered actionable feedback, contributing to a measurable reduction in handling time.</li>
-              <li><b>Root-Cause &amp; Edge-Case Analysis</b> — resolved complex, ambiguous escalations using critical thinking and policy knowledge.</li>
-              <li><b>Cross-Functional Alignment</b> — partnered with QA and management to calibrate guidelines and ensure consistent classification.</li>
+              <li data-i18n="job1Bul1"><b>Process &amp; Policy Analysis</b> — reviewed high volumes of user content against complex, evolving policy rules, identifying patterns and edge cases to inform policy updates.</li>
+              <li data-i18n="job1Bul2"><b>Quality &amp; SLA Adherence</b> — maintained a consistently high accuracy rate while strictly adhering to SLAs and KPIs.</li>
+              <li data-i18n="job1Bul3"><b>Process Optimization</b> — evaluated moderation workflows and delivered actionable feedback, contributing to a measurable reduction in handling time.</li>
+              <li data-i18n="job1Bul4"><b>Root-Cause &amp; Edge-Case Analysis</b> — resolved complex, ambiguous escalations using critical thinking and policy knowledge.</li>
+              <li data-i18n="job1Bul5"><b>Cross-Functional Alignment</b> — partnered with QA and management to calibrate guidelines and ensure consistent classification.</li>
             </ul>
           </div>
         </div>
 
         <div class="job reveal">
           <div class="job-head">
-            <div><h3>Call Centre Agent</h3><span class="job-org">Telus, Bucharest, Romania — French</span></div>
+            <div><h3 data-i18n="job2Title">Call Centre Agent</h3><span class="job-org" data-i18n="job2Org">Telus, Bucharest, Romania — French</span></div>
             <span class="job-dates">May – Sep 2025</span>
           </div>
           <div class="job-body">
             <ul>
-              <li><b>Stakeholder Communication</b> — provided clear, concise resolutions to diverse customer inquiries under pressure.</li>
-              <li><b>Adaptability</b> — addressed unexpected challenges and shifting priorities in a fast-paced environment.</li>
+              <li data-i18n="job2Bul1"><b>Stakeholder Communication</b> — provided clear, concise resolutions to diverse customer inquiries under pressure.</li>
+              <li data-i18n="job2Bul2"><b>Adaptability</b> — addressed unexpected challenges and shifting priorities in a fast-paced environment.</li>
             </ul>
           </div>
         </div>
 
         <div class="job reveal">
           <div class="job-head">
-            <div><h3>Sales Service</h3><span class="job-org">Banque Zitouna, Bizerta, Tunisia</span></div>
+            <div><h3 data-i18n="job3Title">Sales Service</h3><span class="job-org">Banque Zitouna, Bizerta, Tunisia</span></div>
             <span class="job-dates">Jun – Nov 2023</span>
           </div>
           <div class="job-body">
             <ul>
-              <li><b>Client-Facing Banking Exposure</b> — supported customer-facing operations, building early familiarity with banking service standards.</li>
+              <li data-i18n="job3Bul1"><b>Client-Facing Banking Exposure</b> — supported customer-facing operations, building early familiarity with banking service standards.</li>
             </ul>
           </div>
         </div>
@@ -472,50 +481,50 @@ button{ font-family:inherit; }
   <section class="section" id="projects">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">03 — Projects</span>
-        <h2 class="section-title">Selected <span class="accent">Work</span></h2>
+        <span class="eyebrow" data-i18n="projEyebrow">03 — Projects</span>
+        <h2 class="section-title" data-i18n="projTitle">Selected <span class="accent">Work</span></h2>
       </div>
 
       <div class="project-grid reveal" id="projectGrid">
         <a class="project-card tilt" href="https://github.com/Fakhriilahi/credit-risk-analysis" target="_blank" rel="noopener">
           <div class="pc-head"><span class="pc-num">01</span><span class="pc-arrow">&#8599;</span></div>
-          <h3>Credit Risk Analysis</h3>
-          <p>SQL + Python on 39,717 real loans — interpretable logistic-regression default model (AUC 0.71), exported as a scored, Power BI-ready dataset.</p>
+          <h3 data-i18n="p1Title">Credit Risk Analysis</h3>
+          <p data-i18n="p1Desc">SQL + Python on 39,717 real loans — interpretable logistic-regression default model (AUC 0.71), exported as a scored, Power BI-ready dataset.</p>
           <div class="pc-tags"><span>SQL</span><span>Python</span><span>scikit-learn</span></div>
         </a>
         <a class="project-card tilt" href="https://github.com/Fakhriilahi/hr-attrition-sql" target="_blank" rel="noopener">
           <div class="pc-head"><span class="pc-num">02</span><span class="pc-arrow">&#8599;</span></div>
-          <h3>HR Attrition Analysis</h3>
-          <p>Pure-SQL study of 1,470 employees — overtime is the strongest attrition driver (30.5% vs 10.4%), compounding to 36.6% in the highest-risk segment.</p>
+          <h3 data-i18n="p2Title">HR Attrition Analysis</h3>
+          <p data-i18n="p2Desc">Pure-SQL study of 1,470 employees — overtime is the strongest attrition driver (30.5% vs 10.4%), compounding to 36.6% in the highest-risk segment.</p>
           <div class="pc-tags"><span>SQL</span><span>SQLite</span></div>
         </a>
         <a class="project-card tilt" href="https://github.com/Fakhriilahi/retail-sales-powerbi" target="_blank" rel="noopener">
           <div class="pc-head"><span class="pc-num">03</span><span class="pc-arrow">&#8599;</span></div>
-          <h3>Retail Sales Performance</h3>
-          <p>Star-schema data model from a messy 10,800-row export, 15 DAX measures, and a full Power BI dashboard build guide.</p>
+          <h3 data-i18n="p3Title">Retail Sales Performance</h3>
+          <p data-i18n="p3Desc">Star-schema data model from a messy 10,800-row export, 15 DAX measures, and a full Power BI dashboard build guide.</p>
           <div class="pc-tags"><span>Power BI</span><span>DAX</span></div>
         </a>
         <a class="project-card tilt" href="https://github.com/Fakhriilahi/marketing-tableau" target="_blank" rel="noopener">
           <div class="pc-head"><span class="pc-num">04</span><span class="pc-arrow">&#8599;</span></div>
-          <h3>Marketing Campaign Performance</h3>
-          <p>Calculated-field methodology and table calculations for a 10,000-campaign dataset, with a 3-dashboard Tableau build guide.</p>
+          <h3 data-i18n="p4Title">Marketing Campaign Performance</h3>
+          <p data-i18n="p4Desc">Calculated-field methodology and table calculations for a 10,000-campaign dataset, with a 3-dashboard Tableau build guide.</p>
           <div class="pc-tags"><span>Tableau</span><span>Calculated Fields</span></div>
         </a>
       </div>
 
-      <div class="cert-row-title reveal">Certifications</div>
+      <div class="cert-row-title reveal" data-i18n="certTitle">Certifications</div>
       <div class="cert-grid reveal">
         <div class="cert-card">
-          <h4>Fundamentals of Visualization with Tableau</h4>
-          <div class="cert-meta"><span class="cert-provider">Coursera · UC Davis</span><span class="cert-status">Done</span></div>
+          <h4 data-i18n="cert1">Fundamentals of Visualization with Tableau</h4>
+          <div class="cert-meta"><span class="cert-provider">Coursera · UC Davis</span><span class="cert-status" data-i18n="done">Done</span></div>
         </div>
         <div class="cert-card">
-          <h4>Databases &amp; SQL for Data Science with Python</h4>
-          <div class="cert-meta"><span class="cert-provider">Coursera · IBM</span><span class="cert-status">Done</span></div>
+          <h4 data-i18n="cert2">Databases &amp; SQL for Data Science with Python</h4>
+          <div class="cert-meta"><span class="cert-provider">Coursera · IBM</span><span class="cert-status" data-i18n="done">Done</span></div>
         </div>
         <div class="cert-card">
-          <h4>Data Analysis &amp; Visualization with Power BI</h4>
-          <div class="cert-meta"><span class="cert-provider">Coursera · Microsoft</span><span class="cert-status">Done</span></div>
+          <h4 data-i18n="cert3">Data Analysis &amp; Visualization with Power BI</h4>
+          <div class="cert-meta"><span class="cert-provider">Coursera · Microsoft</span><span class="cert-status" data-i18n="done">Done</span></div>
         </div>
       </div>
     </div>
@@ -525,8 +534,8 @@ button{ font-family:inherit; }
   <section class="section" id="skills">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">04 — Skills</span>
-        <h2 class="section-title">Toolkit</h2>
+        <span class="eyebrow" data-i18n="skillsEyebrow">04 — Skills</span>
+        <h2 class="section-title" data-i18n="skillsTitle">Toolkit</h2>
       </div>
 
       <div id="skills-canvas-wrap" class="reveal">
@@ -535,25 +544,34 @@ button{ font-family:inherit; }
 
       <div class="marquee">
         <div class="marquee-track">
-          <span>SQL <span class="sep">/</span> Python <span class="sep">/</span> <span class="accent-word">Power BI</span> <span class="sep">/</span> Tableau <span class="sep">/</span> Process Analysis <span class="sep">/</span> Root-Cause Analysis <span class="sep">/</span></span>
-          <span>SQL <span class="sep">/</span> Python <span class="sep">/</span> <span class="accent-word">Power BI</span> <span class="sep">/</span> Tableau <span class="sep">/</span> Process Analysis <span class="sep">/</span> Root-Cause Analysis <span class="sep">/</span></span>
+          <span>SQL <span class="sep">/</span> Python <span class="sep">/</span> <span class="accent-word">Power BI</span> <span class="sep">/</span> Tableau <span class="sep">/</span> <span data-i18n="mProcess">Process Analysis</span> <span class="sep">/</span> <span data-i18n="mRoot">Root-Cause Analysis</span> <span class="sep">/</span></span>
+          <span>SQL <span class="sep">/</span> Python <span class="sep">/</span> <span class="accent-word">Power BI</span> <span class="sep">/</span> Tableau <span class="sep">/</span> <span data-i18n="mProcess">Process Analysis</span> <span class="sep">/</span> <span data-i18n="mRoot">Root-Cause Analysis</span> <span class="sep">/</span></span>
         </div>
       </div>
       <div class="marquee reverse">
         <div class="marquee-track">
-          <span>SLA &amp; KPI Management <span class="sep">/</span> Cross-Functional Collaboration <span class="sep">/</span> <span class="accent-word">Attention to Detail</span> <span class="sep">/</span> Stakeholder Communication <span class="sep">/</span></span>
-          <span>SLA &amp; KPI Management <span class="sep">/</span> Cross-Functional Collaboration <span class="sep">/</span> <span class="accent-word">Attention to Detail</span> <span class="sep">/</span> Stakeholder Communication <span class="sep">/</span></span>
+          <span><span data-i18n="mSla">SLA &amp; KPI Management</span> <span class="sep">/</span> <span data-i18n="mCollab">Cross-Functional Collaboration</span> <span class="sep">/</span> <span class="accent-word" data-i18n="mDetail">Attention to Detail</span> <span class="sep">/</span> <span data-i18n="mComm">Stakeholder Communication</span> <span class="sep">/</span></span>
+          <span><span data-i18n="mSla">SLA &amp; KPI Management</span> <span class="sep">/</span> <span data-i18n="mCollab">Cross-Functional Collaboration</span> <span class="sep">/</span> <span class="accent-word" data-i18n="mDetail">Attention to Detail</span> <span class="sep">/</span> <span data-i18n="mComm">Stakeholder Communication</span> <span class="sep">/</span></span>
         </div>
       </div>
 
       <div class="subgrid-two reveal">
         <div>
-          <span class="mini-title">Languages</span>
-          <ul class="mini-list"><li>Arabic <span>Native</span></li><li>French <span>Fluent</span></li><li>English <span>Fluent</span></li></ul>
+          <span class="mini-title" data-i18n="langTitle">Languages</span>
+          <ul class="mini-list">
+            <li><span data-i18n="lArab">Arabic</span> <span data-i18n="pNative">Native</span></li>
+            <li><span data-i18n="lFren">French</span> <span data-i18n="pFluent">Fluent</span></li>
+            <li><span data-i18n="lEngl">English</span> <span data-i18n="pFluent">Fluent</span></li>
+          </ul>
         </div>
         <div>
-          <span class="mini-title">Qualities</span>
-          <ul class="mini-list"><li>Empathy <span>—</span></li><li>Professionalism <span>—</span></li><li>Resilience <span>—</span></li><li>Adaptability <span>—</span></li></ul>
+          <span class="mini-title" data-i18n="qualTitle">Qualities</span>
+          <ul class="mini-list">
+            <li><span data-i18n="qEmp">Empathy</span> <span>—</span></li>
+            <li><span data-i18n="qProf">Professionalism</span> <span>—</span></li>
+            <li><span data-i18n="qRes">Resilience</span> <span>—</span></li>
+            <li><span data-i18n="qAdp">Adaptability</span> <span>—</span></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -563,16 +581,16 @@ button{ font-family:inherit; }
   <section class="section contact-section" id="contact">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow">05 — Contact</span>
+        <span class="eyebrow" data-i18n="contactEyebrow">05 — Contact</span>
       </div>
-      <h2 class="contact-cta reveal">Open to junior analyst roles —<br>let's talk <a href="mailto:fakhriilahi03@gmail.com">business analytics</a>.</h2>
+      <h2 class="contact-cta reveal" data-i18n="contactCta">Open to junior analyst roles —<br>let's talk <a href="mailto:fakhriilahi03@gmail.com">business analytics</a>.</h2>
 
       <div class="contact-grid reveal">
-        <div class="contact-item"><span class="letter">N</span><span class="label">Name</span><div>Fakhreddine Elahi</div></div>
-        <div class="contact-item"><span class="letter">L</span><span class="label">Location</span><div>Bucharest, Romania</div><div>Creil, France</div></div>
-        <div class="contact-item"><span class="letter">P</span><span class="label">Phone</span><a href="tel:+40731952027">+40 731 952 027</a><a href="tel:+21656438238">+216 56 438 238</a></div>
-        <div class="contact-item"><span class="letter">C</span><span class="label">Email</span><a href="mailto:fakhriilahi03@gmail.com">fakhriilahi03@gmail.com</a></div>
-        <div class="contact-item"><span class="letter">S</span><span class="label">Socials</span><a href="https://github.com/Fakhriilahi" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/fakhreddine-elahi-738aba2b5/" target="_blank" rel="noopener">LinkedIn</a></div>
+        <div class="contact-item"><span class="letter">N</span><span class="label" data-i18n="cName">Name</span><div>Fakhreddine Elahi</div></div>
+        <div class="contact-item"><span class="letter">L</span><span class="label" data-i18n="cLoc">Location</span><div>Bucharest, Romania</div><div>Creil, France</div></div>
+        <div class="contact-item"><span class="letter">P</span><span class="label" data-i18n="cPhone">Phone</span><a href="tel:+40731952027">+40 731 952 027</a><a href="tel:+21656438238">+216 56 438 238</a></div>
+        <div class="contact-item"><span class="letter">C</span><span class="label" data-i18n="cEmail">Email</span><a href="mailto:fakhriilahi03@gmail.com">fakhriilahi03@gmail.com</a></div>
+        <div class="contact-item"><span class="letter">S</span><span class="label" data-i18n="cSocials">Socials</span><a href="https://github.com/Fakhriilahi" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/fakhreddine-elahi-738aba2b5/" target="_blank" rel="noopener">LinkedIn</a></div>
       </div>
     </div>
   </section>
@@ -581,8 +599,8 @@ button{ font-family:inherit; }
 
 <footer class="site-footer">
   <div class="wrap" style="width:100%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
-    <span>&copy; <span id="year"></span> Fakhreddine Elahi. All rights reserved.</span>
-    <a href="#hero" class="back-top">&uarr; Back to top</a>
+    <span>&copy; <span id="year"></span> Fakhreddine Elahi. <span data-i18n="rights">All rights reserved.</span></span>
+    <a href="#hero" class="back-top">&uarr; <span data-i18n="backTop">Back to top</span></a>
   </div>
 </footer>
 
@@ -592,6 +610,203 @@ button{ font-family:inherit; }
 <script>
 (function(){
 "use strict";
+
+/* ============================================================ I18N DICTIONARY */
+var translations = {
+  en: {
+    skipLink: "Skip to content",
+    loading: "Loading experience",
+    navAbout: "About",
+    navExperience: "Experience",
+    navProjects: "Projects",
+    navSkills: "Skills",
+    navContact: "Contact",
+    menu: "Menu",
+    close: "Close",
+    heroEyebrow: "Business & IT Analytics",
+    heroLoc: "Bucharest, Romania<br>& Creil, France",
+    heroPitch: "Junior Business/IT Analyst turning <b>high-volume, policy-driven</b> operations into clear, structured decisions — with SQL, Python, Power BI and Tableau behind every call.",
+    btnContact: "Get in touch",
+    btnProjects: "View projects",
+    scroll: "Scroll",
+    aboutEyebrow: "01 — About",
+    aboutTitle: "Profile",
+    aboutStatement: "A <span class=\"accent\">Master's in Business Analytics</span> paired with hands-on experience in strict-SLA, policy-driven environments — comfortable translating complex rules into clear, structured decisions.",
+    aboutBody: "Junior Business/IT Analyst profile combining a Master's in Business Analytics (Python, SQL, Power BI, predictive modeling, Tableau) with hands-on experience in high-volume, policy-driven operational environments. Comfortable translating complex rules into clear, structured decisions, working under strict SLAs and KPIs, and aligning across teams on process and quality. Seeking to apply analytical rigor and stakeholder communication skills to functional analysis work in a regulated, process-intensive setting such as credit granting.",
+    edu1Title: "Master's, Business Analytics",
+    edu1Desc: "Bucharest University of Economic Studies (FABIZ)",
+    edu2Title: "National License, Economic Sciences",
+    edu2Desc: "ISG Bizerte — Economic: Engineering & Finance",
+    langTitle: "Languages",
+    langList: "Arabic · French · English",
+    langProf: "Native · Fluent · Fluent",
+    expEyebrow: "02 — Experience",
+    expTitle: "Selected <span class=\"accent\">Experience</span>",
+    present: "Present",
+    job1Title: "Content Moderator",
+    job1Org: "Genpact Romania, Bucharest — French",
+    job1Bul1: "<b>Process & Policy Analysis</b> — reviewed high volumes of user content against complex, evolving policy rules, identifying patterns and edge cases to inform policy updates.",
+    job1Bul2: "<b>Quality & SLA Adherence</b> — maintained a consistently high accuracy rate while strictly adhering to SLAs and KPIs.",
+    job1Bul3: "<b>Process Optimization</b> — evaluated moderation workflows and delivered actionable feedback, contributing to a measurable reduction in handling time.",
+    job1Bul4: "<b>Root-Cause & Edge-Case Analysis</b> — resolved complex, ambiguous escalations using critical thinking and policy knowledge.",
+    job1Bul5: "<b>Cross-Functional Alignment</b> — partnered with QA and management to calibrate guidelines and ensure consistent classification.",
+    job2Title: "Call Centre Agent",
+    job2Org: "Telus, Bucharest, Romania — French",
+    job2Bul1: "<b>Stakeholder Communication</b> — provided clear, concise resolutions to diverse customer inquiries under pressure.",
+    job2Bul2: "<b>Adaptability</b> — addressed unexpected challenges and shifting priorities in a fast-paced environment.",
+    job3Title: "Sales Service",
+    job3Bul1: "<b>Client-Facing Banking Exposure</b> — supported customer-facing operations, building early familiarity with banking service standards.",
+    projEyebrow: "03 — Projects",
+    projTitle: "Selected <span class=\"accent\">Work</span>",
+    p1Title: "Credit Risk Analysis",
+    p1Desc: "SQL + Python on 39,717 real loans — interpretable logistic-regression default model (AUC 0.71), exported as a scored, Power BI-ready dataset.",
+    p2Title: "HR Attrition Analysis",
+    p2Desc: "Pure-SQL study of 1,470 employees — overtime is the strongest attrition driver (30.5% vs 10.4%), compounding to 36.6% in the highest-risk segment.",
+    p3Title: "Retail Sales Performance",
+    p3Desc: "Star-schema data model from a messy 10,800-row export, 15 DAX measures, and a full Power BI dashboard build guide.",
+    p4Title: "Marketing Campaign Performance",
+    p4Desc: "Calculated-field methodology and table calculations for a 10,000-campaign dataset, with a 3-dashboard Tableau build guide.",
+    certTitle: "Certifications",
+    cert1: "Fundamentals of Visualization with Tableau",
+    cert2: "Databases & SQL for Data Science with Python",
+    cert3: "Data Analysis & Visualization with Power BI",
+    done: "Done",
+    skillsEyebrow: "04 — Skills",
+    skillsTitle: "Toolkit",
+    mProcess: "Process Analysis",
+    mRoot: "Root-Cause Analysis",
+    mSla: "SLA & KPI Management",
+    mCollab: "Cross-Functional Collaboration",
+    mDetail: "Attention to Detail",
+    mComm: "Stakeholder Communication",
+    lArab: "Arabic",
+    lFren: "French",
+    lEngl: "English",
+    pNative: "Native",
+    pFluent: "Fluent",
+    qualTitle: "Qualities",
+    qEmp: "Empathy",
+    qProf: "Professionalism",
+    qRes: "Resilience",
+    qAdp: "Adaptability",
+    contactEyebrow: "05 — Contact",
+    contactCta: "Open to junior analyst roles —<br>let's talk <a href=\"mailto:fakhriilahi03@gmail.com\">business analytics</a>.",
+    cName: "Name",
+    cLoc: "Location",
+    cPhone: "Phone",
+    cEmail: "Email",
+    cSocials: "Socials",
+    rights: "All rights reserved.",
+    backTop: "Back to top"
+  },
+  fr: {
+    skipLink: "Aller au contenu",
+    loading: "Chargement du portfolio",
+    navAbout: "À propos",
+    navExperience: "Expérience",
+    navProjects: "Projets",
+    navSkills: "Compétences",
+    navContact: "Contact",
+    menu: "Menu",
+    close: "Fermer",
+    heroEyebrow: "Analyse Métier & IT",
+    heroLoc: "Bucarest, Roumanie<br>& Creil, France",
+    heroPitch: "Analyste Métier/IT Junior transformant des opérations à <b>fort volume régies par des politiques complexes</b> en décisions claires et structurées — avec SQL, Python, Power BI et Tableau.",
+    btnContact: "Me contacter",
+    btnProjects: "Voir les projets",
+    scroll: "Défiler",
+    aboutEyebrow: "01 — À propos",
+    aboutTitle: "Profil",
+    aboutStatement: "Un <span class=\"accent\">Master en Business Analytics</span> associé à une expérience pratique dans des environnements à SLA stricts — à l'aise pour traduire des règles complexes en décisions structurées.",
+    aboutBody: "Profil d'analyste métier/IT junior combinant un Master en Business Analytics (Python, SQL, Power BI, modélisation prédictive, Tableau) avec une expérience pratique dans des environnements opérationnels à fort volume soumis à des réglementations strictes. À l'aise dans la traduction de règles complexes en décisions structurées, le respect de SLA et KPI exigeants, et l'alignement interdisciplinaire sur la qualité. Désireux d'appliquer une rigueur analytique et des compétences de communication à des missions d'analyse fonctionnelle.",
+    edu1Title: "Master, Business Analytics",
+    edu1Desc: "Université d'Études Économiques de Bucarest (FABIZ)",
+    edu2Title: "Licence Nationale, Sciences Économiques",
+    edu2Desc: "ISG Bizerte — Économie : Ingénierie & Finance",
+    langTitle: "Langues",
+    langList: "Arabe · Français · Anglais",
+    langProf: "Langue maternelle · Courant · Courant",
+    expEyebrow: "02 — Expérience",
+    expTitle: "Parcours <span class=\"accent\">Professionnel</span>",
+    present: "Présent",
+    job1Title: "Modérateur de Contenu",
+    job1Org: "Genpact Roumanie, Bucarest — Francophone",
+    job1Bul1: "<b>Analyse des Processus & Politiques</b> — examen de volumes élevés de contenus selon des réglementations complexes et évolutives, identification de schémas et cas limites pour optimiser les politiques.",
+    job1Bul2: "<b>Qualité & Respect des SLA</b> — maintien d'un niveau de précision élevé tout en respectant strictement les SLA et KPI.",
+    job1Bul3: "<b>Optimisation des Processus</b> — évaluation des flux de modération et formulation de retours constructifs, réduisant mesurablement le temps de traitement.",
+    job1Bul4: "<b>Analyse des Causes Racines</b> — résolution d'escalades complexes et ambiguës grâce à un esprit critique et une maîtrise des politiques.",
+    job1Bul5: "<b>Alignement Transversal</b> — collaboration avec l'équipe QA et le management pour étalonner les directives et assurer un classement homogène.",
+    job2Title: "Agent de Centre d'Appels",
+    job2Org: "Telus, Bucarest, Roumanie — Francophone",
+    job2Bul1: "<b>Communication avec les Parties Prenantes</b> — résolution claire et concise des demandes clients sous forte pression.",
+    job2Bul2: "<b>Adaptabilité</b> — gestion des défis imprévus et des priorités changeantes dans un environnement dynamique.",
+    job3Title: "Service Commercial",
+    job3Bul1: "<b>Immersion Bancaire Client</b> — soutien aux opérations de guichet et familiarisation avec les normes de service bancaire.",
+    projEyebrow: "03 — Projets",
+    projTitle: "Projets <span class=\"accent\">Sélectionnés</span>",
+    p1Title: "Analyse du Risque de Crédit",
+    p1Desc: "SQL + Python sur 39 717 prêts réels — modèle de régression logistique interprétable (AUC 0.71), exporté sous forme de jeu de données prêt pour Power BI.",
+    p2Title: "Analyse de l'Attrition RH",
+    p2Desc: "Étude SQL pure sur 1 470 employés — les heures supplémentaires sont le premier facteur d'attrition (30,5% contre 10,4%), grimpant à 36,6% dans le segment à haut risque.",
+    p3Title: "Performance des Ventes Retail",
+    p3Desc: "Modélisation en étoile à partir d'un fichier brut de 10 800 lignes, 15 mesures DAX et un guide complet de création de tableau de bord Power BI.",
+    p4Title: "Performance des Campagnes Marketing",
+    p4Desc: "Champs calculés et calculs de table sur un ensemble de 10 000 campagnes, accompagnés d'un guide d'élaboration de 3 tableaux de bord Tableau.",
+    certTitle: "Certifications",
+    cert1: "Principes Fondamentaux de la Visualisation avec Tableau",
+    cert2: "Bases de Données & SQL pour la Data Science avec Python",
+    cert3: "Analyse de Données & Visualisation avec Power BI",
+    done: "Obtenu",
+    skillsEyebrow: "04 — Compétences",
+    skillsTitle: "Boîte à Outils",
+    mProcess: "Analyse de Processus",
+    mRoot: "Analyse des Causes Racines",
+    mSla: "Gestion des SLA & KPI",
+    mCollab: "Collaboration Transversale",
+    mDetail: "Rigueur & Souci du Détail",
+    mComm: "Communication Parties Prenantes",
+    lArab: "Arabe",
+    lFren: "Français",
+    lEngl: "Anglais",
+    pNative: "Maternelle",
+    pFluent: "Courant",
+    qualTitle: "Qualités",
+    qEmp: "Empathetic",
+    qProf: "Professionnalisme",
+    qRes: "Résilience",
+    qAdp: "Adaptabilité",
+    contactEyebrow: "05 — Contact",
+    contactCta: "Disponible pour des postes d'analyste junior —<br>discutons de <a href=\"mailto:fakhriilahi03@gmail.com\">business analytics</a>.",
+    cName: "Nom",
+    cLoc: "Localisation",
+    cPhone: "Téléphone",
+    cEmail: "E-mail",
+    cSocials: "Réseaux",
+    rights: "Tous droits réservés.",
+    backTop: "Haut de page"
+  }
+};
+
+var currentLang = 'en';
+
+function setLanguage(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  var elements = document.querySelectorAll('[data-i18n]');
+  elements.forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (translations[lang] && translations[lang][key]) {
+      el.innerHTML = translations[lang][key];
+    }
+  });
+}
+
+document.querySelectorAll('.langBtn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    setLanguage(currentLang === 'en' ? 'fr' : 'en');
+  });
+});
+
 document.documentElement.classList.add('js');
 document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -752,7 +967,7 @@ closeBtn.addEventListener('click', closeNav);
 overlay.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeNav); });
 document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeNav(); });
 
-/* ============================================================ THREE.JS — HERO AVATAR & BOUNCING BALLS */
+/* ============================================================ THREE.JS — HERO AVATAR */
 if(hasThree){
   (function(){
     var canvas = document.getElementById('hero-canvas');
@@ -890,7 +1105,7 @@ if(hasThree){
     avatar.position.set(1.75, -0.55, -0.3);
     avatar.scale.setScalar(0.82);
 
-    /* particles */
+    /* subtle orbiting particles */
     var particleCount = isTouch ? 60 : 140;
     var particleGeo = new THREE.BufferGeometry();
     var positions = new Float32Array(particleCount * 3);
@@ -907,127 +1122,99 @@ if(hasThree){
     var particles = new THREE.Points(particleGeo, particleMat);
     scene.add(particles);
 
-    /* ============================================================
-       BOUNCING BALLS INTERACTION FIX (Smooth floating + Jump on CLICK ONLY)
-       ============================================================ */
-    var BOUNDS = { x: 3.2, y: 2.0, z: 1.5 };
+    /* bouncing balls */
+    var BOUNDS = { x: 3.6, y: 2.2, z: 1.8 };
     var BALL_Z_OFFSET = 1.6;
     var ballColors = [0xd6ff3f, 0x6f7bff, 0xf3f3f0, 0xff6f91];
     var balls = [];
     var ballGroup = new THREE.Group();
-    var NUM_BALLS = isTouch ? 6 : 10;
-
+    var NUM_BALLS = isTouch ? 6 : 11;
     for (var bi = 0; bi < NUM_BALLS; bi++) {
-      var br = 0.22 + Math.random() * 0.12;
-      var bgeo = new THREE.SphereGeometry(br, 24, 24);
+      var br = 0.24 + Math.random() * 0.14;
+      var bgeo = new THREE.SphereGeometry(br, 22, 22);
       var bmat = new THREE.MeshStandardMaterial({
         color: ballColors[bi % ballColors.length],
         roughness: 0.2, metalness: 0.25,
-        emissive: ballColors[bi % ballColors.length], emissiveIntensity: 0.2
+        emissive: ballColors[bi % ballColors.length], emissiveIntensity: 0.22
       });
       var bmesh = new THREE.Mesh(bgeo, bmat);
-      
-      var baseX = (Math.random() * 2 - 1) * BOUNDS.x;
-      var baseY = (Math.random() * 2 - 1) * BOUNDS.y;
-      var baseZ = BALL_Z_OFFSET + (Math.random() * 2 - 1) * 0.8;
-
-      bmesh.position.set(baseX, baseY, baseZ);
+      bmesh.position.set(
+        (Math.random() * 2 - 1) * BOUNDS.x,
+        (Math.random() * 2 - 1) * BOUNDS.y,
+        BALL_Z_OFFSET + (Math.random() * 2 - 1) * BOUNDS.z
+      );
       ballGroup.add(bmesh);
-
       balls.push({
         mesh: bmesh,
         radius: br,
-        baseX: baseX,
-        baseY: baseY,
-        baseZ: baseZ,
-        floatSpeedX: 0.5 + Math.random() * 0.8,
-        floatSpeedY: 0.6 + Math.random() * 0.9,
-        floatAmplitudeX: 0.2 + Math.random() * 0.3,
-        floatAmplitudeY: 0.25 + Math.random() * 0.35,
-        phase: Math.random() * Math.PI * 2,
-        jumpVelY: 0,
-        jumpVelZ: 0,
-        targetScale: 1
+        vel: new THREE.Vector3((Math.random() - 0.5) * 0.9, (Math.random() - 0.5) * 0.9, (Math.random() - 0.5) * 0.5)
       });
     }
     scene.add(ballGroup);
 
-    var clickRaycaster = new THREE.Raycaster();
-    var mouseVec2 = new THREE.Vector2(-10, -10);
+    var ballRaycaster = new THREE.Raycaster();
+    var ballMouseVec2 = new THREE.Vector2(-10, -10);
+    var interactPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), -BALL_Z_OFFSET);
+    var mouse3D = new THREE.Vector3();
+    var prevMouse3D = new THREE.Vector3();
+    var mouseVel3D = new THREE.Vector3();
+    var haveMouse3D = false;
 
-    window.addEventListener('mousemove', function(e) {
-      mouseVec2.x = (e.clientX / window.innerWidth) * 2 - 1;
-      mouseVec2.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    window.addEventListener('mousemove', function (e) {
+      ballMouseVec2.x = (e.clientX / window.innerWidth) * 2 - 1;
+      ballMouseVec2.y = -(e.clientY / window.innerHeight) * 2 + 1;
     }, { passive: true });
 
-    /* CLICK TO JUMP FUNCTIONALITY */
-    window.addEventListener('click', function(e) {
-      mouseVec2.x = (e.clientX / window.innerWidth) * 2 - 1;
-      mouseVec2.y = -(e.clientY / window.innerHeight) * 2 + 1;
-      
-      clickRaycaster.setFromCamera(mouseVec2, camera);
-      var intersects = clickRaycaster.intersectObjects(balls.map(function(b){ return b.mesh; }));
-      
-      if(intersects.length > 0) {
-        var clickedMesh = intersects[0].object;
-        balls.forEach(function(b) {
-          if(b.mesh === clickedMesh) {
-            // Trigger jump on click!
-            b.jumpVelY = 0.12 + Math.random() * 0.08;
-            b.jumpVelZ = 0.08 + Math.random() * 0.05;
-          }
-        });
+    function updateBalls(dt) {
+      ballRaycaster.setFromCamera(ballMouseVec2, camera);
+      var hit = ballRaycaster.ray.intersectPlane(interactPlane, mouse3D);
+      haveMouse3D = !!hit;
+      if (haveMouse3D) {
+        mouseVel3D.subVectors(mouse3D, prevMouse3D);
+        prevMouse3D.copy(mouse3D);
       }
-    });
-
-    function updateBalls(t, dt) {
-      clickRaycaster.setFromCamera(mouseVec2, camera);
-      var hoveredIntersects = clickRaycaster.intersectObjects(balls.map(function(b){ return b.mesh; }));
-      var hoveredMesh = hoveredIntersects.length > 0 ? hoveredIntersects[0].object : null;
 
       for (var i = 0; i < balls.length; i++) {
         var b = balls[i];
-
-        // 1. Smooth Floating Animation (Left/Right, Up/Down)
-        var floatX = Math.sin(t * b.floatSpeedX + b.phase) * b.floatAmplitudeX;
-        var floatY = Math.cos(t * b.floatSpeedY + b.phase) * b.floatAmplitudeY;
-
-        // 2. Physics for Click-Jump
-        if(b.jumpVelY !== 0 || b.jumpVelZ !== 0) {
-          b.baseY += b.jumpVelY;
-          b.baseZ += b.jumpVelZ;
-
-          // Gravity effect returning to normal height
-          b.jumpVelY -= 0.35 * dt;
-          b.jumpVelZ -= 0.25 * dt;
-
-          // Floor/Base boundary reset
-          if (b.baseY <= -BOUNDS.y) {
-            b.baseY = -BOUNDS.y;
-            b.jumpVelY = -b.jumpVelY * 0.5; // bounce attenuation
-            if (Math.abs(b.jumpVelY) < 0.01) b.jumpVelY = 0;
-          }
-          if (b.baseZ <= BALL_Z_OFFSET - 0.8) {
-            b.baseZ = BALL_Z_OFFSET - 0.8;
-            b.jumpVelZ = 0;
+        if (haveMouse3D) {
+          var d = b.mesh.position.distanceTo(mouse3D);
+          var influence = 1.3;
+          if (d < influence) {
+            var strength = (influence - d) / influence;
+            var push = new THREE.Vector3().subVectors(b.mesh.position, mouse3D).normalize();
+            b.vel.addScaledVector(push, strength * 6 * dt);
+            b.vel.addScaledVector(mouseVel3D, 6 * strength);
           }
         }
+        b.vel.multiplyScalar(0.99);
+        b.mesh.position.addScaledVector(b.vel, dt * 60 * 0.0166);
 
-        // Apply Position
-        b.mesh.position.x = b.baseX + floatX;
-        b.mesh.position.y = b.baseY + floatY;
-        b.mesh.position.z = b.baseZ;
+        if (b.mesh.position.x > BOUNDS.x || b.mesh.position.x < -BOUNDS.x) { b.mesh.position.x = THREE.MathUtils.clamp(b.mesh.position.x, -BOUNDS.x, BOUNDS.x); b.vel.x *= -0.75; }
+        if (b.mesh.position.y > BOUNDS.y || b.mesh.position.y < -BOUNDS.y) { b.mesh.position.y = THREE.MathUtils.clamp(b.mesh.position.y, -BOUNDS.y, BOUNDS.y); b.vel.y *= -0.75; }
+        var zMin = BALL_Z_OFFSET - BOUNDS.z, zMax = BALL_Z_OFFSET + BOUNDS.z;
+        if (b.mesh.position.z > zMax || b.mesh.position.z < zMin) { b.mesh.position.z = THREE.MathUtils.clamp(b.mesh.position.z, zMin, zMax); b.vel.z *= -0.75; }
+      }
 
-        // 3. Smooth Scale on Hover (NO JUMP ON HOVER)
-        if (b.mesh === hoveredMesh) {
-          b.targetScale = 1.3;
-        } else {
-          b.targetScale = 1.0;
+      for (var a = 0; a < balls.length; a++) {
+        for (var c = a + 1; c < balls.length; c++) {
+          var ba = balls[a], bc = balls[c];
+          var diff = new THREE.Vector3().subVectors(ba.mesh.position, bc.mesh.position);
+          var dist = diff.length();
+          var minDist = ba.radius + bc.radius;
+          if (dist < minDist && dist > 0.0001) {
+            var normal = diff.multiplyScalar(1 / dist);
+            var overlap = (minDist - dist) / 2;
+            ba.mesh.position.addScaledVector(normal, overlap);
+            bc.mesh.position.addScaledVector(normal, -overlap);
+            var relVel = new THREE.Vector3().subVectors(ba.vel, bc.vel);
+            var speed = relVel.dot(normal);
+            if (speed < 0) {
+              var impulse = normal.clone().multiplyScalar(speed);
+              ba.vel.sub(impulse);
+              bc.vel.add(impulse);
+            }
+          }
         }
-
-        b.mesh.scale.x += (b.targetScale - b.mesh.scale.x) * 0.1;
-        b.mesh.scale.y += (b.targetScale - b.mesh.scale.y) * 0.1;
-        b.mesh.scale.z += (b.targetScale - b.mesh.scale.z) * 0.1;
       }
     }
 
@@ -1077,7 +1264,7 @@ if(hasThree){
 
       particles.rotation.y = t * 0.03;
 
-      if(!reduceMotion) updateBalls(t, dt);
+      if(!reduceMotion) updateBalls(dt);
 
       renderer.render(scene, camera);
     }
@@ -1112,9 +1299,9 @@ if(hasThree){
     wire.scale.setScalar(1.02);
     scene.add(solid, wire);
 
-    /* Skill Balls floating smoothly */
     var skillBalls = [];
     var skillBallColors = [0xd6ff3f, 0x6f7bff, 0xf3f3f0, 0xff6f91];
+    var SB_BOUNDS = 2.3;
     var SB_COUNT = 6;
     for (var si = 0; si < SB_COUNT; si++) {
       var sr = 0.13 + Math.random() * 0.07;
@@ -1129,15 +1316,64 @@ if(hasThree){
       smesh.position.set(Math.cos(sang) * 1.9, Math.sin(sang) * 1.2, (Math.random() - 0.5) * 1.2);
       scene.add(smesh);
       skillBalls.push({
-        mesh: smesh, radius: sr, sang: sang, speed: 0.5 + Math.random() * 0.5
+        mesh: smesh, radius: sr,
+        vel: new THREE.Vector3((Math.random() - 0.5) * 0.6, (Math.random() - 0.5) * 0.6, (Math.random() - 0.5) * 0.4)
       });
     }
+    var skillRaycaster = new THREE.Raycaster();
+    var skillMouseVec2 = new THREE.Vector2(-10, -10);
+    var skillPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+    var skillMouse3D = new THREE.Vector3();
+    var haveSkillMouse = false;
+    window.addEventListener('mousemove', function (e) {
+      var rect = wrap.getBoundingClientRect();
+      skillMouseVec2.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      skillMouseVec2.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+    }, { passive: true });
 
-    function updateSkillBalls(t) {
+    function updateSkillBalls(dt) {
+      skillRaycaster.setFromCamera(skillMouseVec2, camera);
+      haveSkillMouse = !!skillRaycaster.ray.intersectPlane(skillPlane, skillMouse3D);
       for (var i = 0; i < skillBalls.length; i++) {
         var b = skillBalls[i];
-        b.mesh.position.x = Math.cos(b.sang + t * b.speed) * 1.9;
-        b.mesh.position.y = Math.sin(b.sang * 2 + t * b.speed) * 0.8;
+        if (haveSkillMouse) {
+          var d = b.mesh.position.distanceTo(skillMouse3D);
+          var influence = 1.1;
+          if (d < influence) {
+            var strength = (influence - d) / influence;
+            var push = new THREE.Vector3().subVectors(b.mesh.position, skillMouse3D).normalize();
+            b.vel.addScaledVector(push, strength * 5 * dt);
+          }
+        }
+        b.vel.multiplyScalar(0.985);
+        b.mesh.position.addScaledVector(b.vel, dt * 60 * 0.0166);
+        ['x', 'y', 'z'].forEach(function (axis) {
+          if (b.mesh.position[axis] > SB_BOUNDS || b.mesh.position[axis] < -SB_BOUNDS) {
+            b.mesh.position[axis] = THREE.MathUtils.clamp(b.mesh.position[axis], -SB_BOUNDS, SB_BOUNDS);
+            b.vel[axis] *= -0.75;
+          }
+        });
+      }
+      for (var a = 0; a < skillBalls.length; a++) {
+        for (var c = a + 1; c < skillBalls.length; c++) {
+          var ba = skillBalls[a], bc = skillBalls[c];
+          var diff = new THREE.Vector3().subVectors(ba.mesh.position, bc.mesh.position);
+          var dist = diff.length();
+          var minDist = ba.radius + bc.radius;
+          if (dist < minDist && dist > 0.0001) {
+            var normal = diff.multiplyScalar(1 / dist);
+            var overlap = (minDist - dist) / 2;
+            ba.mesh.position.addScaledVector(normal, overlap);
+            bc.mesh.position.addScaledVector(normal, -overlap);
+            var relVel = new THREE.Vector3().subVectors(ba.vel, bc.vel);
+            var speed = relVel.dot(normal);
+            if (speed < 0) {
+              var impulse = normal.clone().multiplyScalar(speed);
+              ba.vel.sub(impulse);
+              bc.vel.add(impulse);
+            }
+          }
+        }
       }
     }
 
@@ -1157,14 +1393,18 @@ if(hasThree){
     } else { visible = true; }
 
     var clock = new THREE.Clock();
+    var lastSkillT = performance.now();
     function animate(){
       requestAnimationFrame(animate);
       if(!visible) return;
       var t = clock.getElapsedTime();
+      var now = performance.now();
+      var dt = Math.min((now - lastSkillT) / 1000, 0.05);
+      lastSkillT = now;
       solid.rotation.y = t * (reduceMotion ? 0.05 : 0.25);
       solid.rotation.x = t * 0.12;
       wire.rotation.copy(solid.rotation);
-      if(!reduceMotion) updateSkillBalls(t);
+      if(!reduceMotion) updateSkillBalls(dt);
       renderer.render(scene, camera);
     }
     animate();
